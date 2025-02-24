@@ -15,8 +15,8 @@ const Index = () => {
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-gradient-to-r from-background/95 to-background/80" />
             <img
-              src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e"
-              alt="Business Building"
+              src="https://images.unsplash.com/photo-1524234107056-1c1f48f64ab8"
+              alt="Moscow City Business Center"
               className="w-full h-full object-cover"
             />
           </div>
@@ -42,8 +42,8 @@ const Index = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="p-6 bg-background rounded-lg border hover:shadow-md transition-all">
                 <img
-                  src="https://images.unsplash.com/photo-1519389950473-47ba0277781c"
-                  alt="Business Meeting"
+                  src="https://images.unsplash.com/photo-1591115765373-5207764f72e4"
+                  alt="Russian Business Meeting"
                   className="w-full h-48 object-cover rounded-lg mb-4"
                 />
                 <h3 className="font-playfair text-xl font-semibold mb-2">Business Networking</h3>
@@ -52,8 +52,8 @@ const Index = () => {
               
               <div className="p-6 bg-background rounded-lg border hover:shadow-md transition-all">
                 <img
-                  src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81"
-                  alt="Trade Conference"
+                  src="https://images.unsplash.com/photo-1526432403660-0da4d3e405de"
+                  alt="African Business Development"
                   className="w-full h-48 object-cover rounded-lg mb-4"
                 />
                 <h3 className="font-playfair text-xl font-semibold mb-2">Trade Development</h3>
@@ -62,8 +62,8 @@ const Index = () => {
               
               <div className="p-6 bg-background rounded-lg border hover:shadow-md transition-all">
                 <img
-                  src="https://images.unsplash.com/photo-1431576901776-e539bd916ba2"
-                  alt="Business District"
+                  src="https://images.unsplash.com/photo-1553729459-efe14ef6055d"
+                  alt="Investment Projects"
                   className="w-full h-48 object-cover rounded-lg mb-4"
                 />
                 <h3 className="font-playfair text-xl font-semibold mb-2">Investment Opportunities</h3>
