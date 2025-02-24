@@ -2,7 +2,7 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { Calendar, ArrowRight } from "lucide-react";
+import { Calendar, ArrowRight, MapPin } from "lucide-react";
 
 const Index = () => {
   return (
@@ -11,8 +11,17 @@ const Index = () => {
       
       {/* Hero Section */}
       <main className="flex-grow pt-16">
-        <section className="bg-gradient-to-b from-primary/5 to-transparent">
-          <div className="container-custom py-24">
+        <section className="relative bg-gradient-to-b from-primary/5 to-transparent overflow-hidden">
+          <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 bg-gradient-to-r from-background/95 to-background/80" />
+            <img
+              src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e"
+              alt="Business Building"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          
+          <div className="container-custom py-24 relative z-10">
             <div className="max-w-3xl mx-auto text-center animate-fadeIn">
               <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
                 Russian-African Chamber of Commerce
@@ -23,6 +32,43 @@ const Index = () => {
               <Button size="lg" className="rounded-full">
                 Become a Member <ArrowRight className="ml-2" size={18} />
               </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Business Cooperation Section */}
+        <section className="py-16 bg-muted/30">
+          <div className="container-custom">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="p-6 bg-background rounded-lg border hover:shadow-md transition-all">
+                <img
+                  src="https://images.unsplash.com/photo-1519389950473-47ba0277781c"
+                  alt="Business Meeting"
+                  className="w-full h-48 object-cover rounded-lg mb-4"
+                />
+                <h3 className="font-playfair text-xl font-semibold mb-2">Business Networking</h3>
+                <p className="text-muted-foreground">Connect with leading companies and entrepreneurs from Russia and Africa</p>
+              </div>
+              
+              <div className="p-6 bg-background rounded-lg border hover:shadow-md transition-all">
+                <img
+                  src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81"
+                  alt="Trade Conference"
+                  className="w-full h-48 object-cover rounded-lg mb-4"
+                />
+                <h3 className="font-playfair text-xl font-semibold mb-2">Trade Development</h3>
+                <p className="text-muted-foreground">Facilitate international trade and economic cooperation between regions</p>
+              </div>
+              
+              <div className="p-6 bg-background rounded-lg border hover:shadow-md transition-all">
+                <img
+                  src="https://images.unsplash.com/photo-1431576901776-e539bd916ba2"
+                  alt="Business District"
+                  className="w-full h-48 object-cover rounded-lg mb-4"
+                />
+                <h3 className="font-playfair text-xl font-semibold mb-2">Investment Opportunities</h3>
+                <p className="text-muted-foreground">Discover investment prospects and business development possibilities</p>
+              </div>
             </div>
           </div>
         </section>
@@ -71,9 +117,12 @@ const Index = () => {
                           <h3 className="font-playfair text-lg font-semibold mb-2 group-hover:text-primary">
                             Trade Mission to South Africa
                           </h3>
-                          <p className="text-sm text-muted-foreground mb-2">
-                            June 15, 2024 - Johannesburg
-                          </p>
+                          <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
+                            <Calendar className="h-4 w-4" />
+                            <span>June 15, 2024</span>
+                            <MapPin className="h-4 w-4 ml-2" />
+                            <span>Johannesburg</span>
+                          </div>
                           <p className="text-muted-foreground">
                             Join our trade mission to explore business opportunities...
                           </p>
