@@ -15,9 +15,13 @@ const Index = () => {
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-gradient-to-r from-background/95 to-background/80" />
             <img
-              src="https://images.unsplash.com/photo-1524234107056-1c1f48f64ab8"
+              src="https://images.unsplash.com/photo-1524234107056-1c1f48f64ab8?auto=format&fit=crop&w=2000&q=80"
               alt="Moscow City Business Center"
               className="w-full h-full object-cover"
+              loading="eager"
+              onError={(e) => {
+                e.currentTarget.src = '/placeholder.svg';
+              }}
             />
           </div>
           
@@ -42,9 +46,13 @@ const Index = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="p-6 bg-background rounded-lg border hover:shadow-md transition-all">
                 <img
-                  src="https://images.unsplash.com/photo-1591115765373-5207764f72e4"
+                  src="https://images.unsplash.com/photo-1591115765373-5207764f72e4?auto=format&fit=crop&w=800&q=80"
                   alt="Russian Business Meeting"
                   className="w-full h-48 object-cover rounded-lg mb-4"
+                  loading="eager"
+                  onError={(e) => {
+                    e.currentTarget.src = '/placeholder.svg';
+                  }}
                 />
                 <h3 className="font-playfair text-xl font-semibold mb-2">Business Networking</h3>
                 <p className="text-muted-foreground">Connect with leading companies and entrepreneurs from Russia and Africa</p>
@@ -52,9 +60,13 @@ const Index = () => {
               
               <div className="p-6 bg-background rounded-lg border hover:shadow-md transition-all">
                 <img
-                  src="https://images.unsplash.com/photo-1526432403660-0da4d3e405de"
+                  src="https://images.unsplash.com/photo-1526432403660-0da4d3e405de?auto=format&fit=crop&w=800&q=80"
                   alt="African Business Development"
                   className="w-full h-48 object-cover rounded-lg mb-4"
+                  loading="eager"
+                  onError={(e) => {
+                    e.currentTarget.src = '/placeholder.svg';
+                  }}
                 />
                 <h3 className="font-playfair text-xl font-semibold mb-2">Trade Development</h3>
                 <p className="text-muted-foreground">Facilitate international trade and economic cooperation between regions</p>
@@ -62,9 +74,13 @@ const Index = () => {
               
               <div className="p-6 bg-background rounded-lg border hover:shadow-md transition-all">
                 <img
-                  src="https://images.unsplash.com/photo-1553729459-efe14ef6055d"
+                  src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&w=800&q=80"
                   alt="Investment Projects"
                   className="w-full h-48 object-cover rounded-lg mb-4"
+                  loading="eager"
+                  onError={(e) => {
+                    e.currentTarget.src = '/placeholder.svg';
+                  }}
                 />
                 <h3 className="font-playfair text-xl font-semibold mb-2">Investment Opportunities</h3>
                 <p className="text-muted-foreground">Discover investment prospects and business development possibilities</p>
