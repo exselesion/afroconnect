@@ -1,4 +1,3 @@
-
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
@@ -15,8 +14,8 @@ const Index = () => {
           <div className="absolute inset-0 z-0">
             <div className="absolute inset-0 bg-gradient-to-r from-background/95 to-background/80" />
             <img
-              src="https://images.unsplash.com/photo-1524234107056-1c1f48f64ab8?auto=format&fit=crop&w=2000&q=80"
-              alt="Moscow City Business Center"
+              src="https://images.unsplash.com/photo-1542728498-07df87080b18?auto=format&fit=crop&w=2000&q=80"
+              alt="Russia Africa Partnership"
               className="w-full h-full object-cover"
               loading="eager"
               onError={(e) => {
@@ -28,13 +27,13 @@ const Index = () => {
           <div className="container-custom py-24 relative z-10">
             <div className="max-w-3xl mx-auto text-center animate-fadeIn">
               <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                Russian-African Chamber of Commerce
+                Российско-Африканская Торгово-Промышленная Палата
               </h1>
               <p className="text-lg text-muted-foreground mb-8">
-                Bridging businesses and cultures between Russia and Africa
+                Объединяем бизнес и культуры России и Африки
               </p>
               <Button size="lg" className="rounded-full">
-                Become a Member <ArrowRight className="ml-2" size={18} />
+                Стать участником <ArrowRight className="ml-2" size={18} />
               </Button>
             </div>
           </div>
@@ -46,44 +45,44 @@ const Index = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="p-6 bg-background rounded-lg border hover:shadow-md transition-all">
                 <img
-                  src="https://images.unsplash.com/photo-1591115765373-5207764f72e4?auto=format&fit=crop&w=800&q=80"
-                  alt="Russian Business Meeting"
+                  src="https://images.unsplash.com/photo-1582584116621-6d3ba5881441?auto=format&fit=crop&w=800&q=80"
+                  alt="Деловое сотрудничество"
                   className="w-full h-48 object-cover rounded-lg mb-4"
                   loading="eager"
                   onError={(e) => {
                     e.currentTarget.src = '/placeholder.svg';
                   }}
                 />
-                <h3 className="font-playfair text-xl font-semibold mb-2">Business Networking</h3>
-                <p className="text-muted-foreground">Connect with leading companies and entrepreneurs from Russia and Africa</p>
+                <h3 className="font-playfair text-xl font-semibold mb-2">Деловые связи</h3>
+                <p className="text-muted-foreground">Налаживаем связи между ведущими компаниями и предпринимателями России и Африки</p>
               </div>
               
               <div className="p-6 bg-background rounded-lg border hover:shadow-md transition-all">
                 <img
-                  src="https://images.unsplash.com/photo-1526432403660-0da4d3e405de?auto=format&fit=crop&w=800&q=80"
-                  alt="African Business Development"
+                  src="https://images.unsplash.com/photo-1606293926075-69a00dbfde81?auto=format&fit=crop&w=800&q=80"
+                  alt="Развитие торговли"
                   className="w-full h-48 object-cover rounded-lg mb-4"
                   loading="eager"
                   onError={(e) => {
                     e.currentTarget.src = '/placeholder.svg';
                   }}
                 />
-                <h3 className="font-playfair text-xl font-semibold mb-2">Trade Development</h3>
-                <p className="text-muted-foreground">Facilitate international trade and economic cooperation between regions</p>
+                <h3 className="font-playfair text-xl font-semibold mb-2">Развитие торговли</h3>
+                <p className="text-muted-foreground">Содействуем международной торговле и экономическому сотрудничеству между регионами</p>
               </div>
               
               <div className="p-6 bg-background rounded-lg border hover:shadow-md transition-all">
                 <img
-                  src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&w=800&q=80"
-                  alt="Investment Projects"
+                  src="https://images.unsplash.com/photo-1557496897-134c34df4f8c?auto=format&fit=crop&w=800&q=80"
+                  alt="Инвестиционные проекты"
                   className="w-full h-48 object-cover rounded-lg mb-4"
                   loading="eager"
                   onError={(e) => {
                     e.currentTarget.src = '/placeholder.svg';
                   }}
                 />
-                <h3 className="font-playfair text-xl font-semibold mb-2">Investment Opportunities</h3>
-                <p className="text-muted-foreground">Discover investment prospects and business development possibilities</p>
+                <h3 className="font-playfair text-xl font-semibold mb-2">Инвестиционные возможности</h3>
+                <p className="text-muted-foreground">Открываем инвестиционные перспективы и возможности развития бизнеса</p>
               </div>
             </div>
           </div>
