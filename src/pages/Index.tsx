@@ -2,6 +2,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   return (
@@ -43,47 +44,74 @@ const Index = () => {
         <section className="py-16 bg-muted/30">
           <div className="container-custom">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="p-6 bg-background rounded-lg border hover:shadow-md transition-all">
-                <img
-                  src="https://images.unsplash.com/photo-1582584116621-6d3ba5881441?auto=format&fit=crop&w=800&q=80"
-                  alt="Деловое сотрудничество"
-                  className="w-full h-48 object-cover rounded-lg mb-4"
-                  loading="eager"
-                  onError={(e) => {
-                    e.currentTarget.src = '/placeholder.svg';
-                  }}
-                />
-                <h3 className="font-playfair text-xl font-semibold mb-2">Деловые связи</h3>
-                <p className="text-muted-foreground">Налаживаем связи между ведущими компаниями и предпринимателями России и Африки</p>
-              </div>
+              <Link 
+                to="/services/business-relations" 
+                className="block group"
+              >
+                <div className="p-6 bg-background rounded-lg border hover:shadow-md transition-all">
+                  <img
+                    src="https://images.unsplash.com/photo-1582584116621-6d3ba5881441?auto=format&fit=crop&w=800&q=80"
+                    alt="Деловое сотрудничество"
+                    className="w-full h-48 object-cover rounded-lg mb-4 group-hover:opacity-90 transition-opacity"
+                    loading="eager"
+                    onError={(e) => {
+                      e.currentTarget.src = '/placeholder.svg';
+                    }}
+                  />
+                  <h3 className="font-playfair text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                    Деловые связи
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Налаживаем связи между ведущими компаниями и предпринимателями России и Африки
+                  </p>
+                </div>
+              </Link>
               
-              <div className="p-6 bg-background rounded-lg border hover:shadow-md transition-all">
-                <img
-                  src="https://images.unsplash.com/photo-1606293926075-69a00dbfde81?auto=format&fit=crop&w=800&q=80"
-                  alt="Развитие торговли"
-                  className="w-full h-48 object-cover rounded-lg mb-4"
-                  loading="eager"
-                  onError={(e) => {
-                    e.currentTarget.src = '/placeholder.svg';
-                  }}
-                />
-                <h3 className="font-playfair text-xl font-semibold mb-2">Развитие торговли</h3>
-                <p className="text-muted-foreground">Содействуем международной торговле и экономическому сотрудничеству между регионами</p>
-              </div>
+              <Link 
+                to="/services/trade-development" 
+                className="block group"
+              >
+                <div className="p-6 bg-background rounded-lg border hover:shadow-md transition-all">
+                  <img
+                    src="https://images.unsplash.com/photo-1606293926075-69a00dbfde81?auto=format&fit=crop&w=800&q=80"
+                    alt="Развитие торговли"
+                    className="w-full h-48 object-cover rounded-lg mb-4 group-hover:opacity-90 transition-opacity"
+                    loading="eager"
+                    onError={(e) => {
+                      e.currentTarget.src = '/placeholder.svg';
+                    }}
+                  />
+                  <h3 className="font-playfair text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                    Развитие торговли
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Содействуем международной торговле и экономическому сотрудничеству между регионами
+                  </p>
+                </div>
+              </Link>
               
-              <div className="p-6 bg-background rounded-lg border hover:shadow-md transition-all">
-                <img
-                  src="https://images.unsplash.com/photo-1557496897-134c34df4f8c?auto=format&fit=crop&w=800&q=80"
-                  alt="Инвестиционные проекты"
-                  className="w-full h-48 object-cover rounded-lg mb-4"
-                  loading="eager"
-                  onError={(e) => {
-                    e.currentTarget.src = '/placeholder.svg';
-                  }}
-                />
-                <h3 className="font-playfair text-xl font-semibold mb-2">Инвестиционные возможности</h3>
-                <p className="text-muted-foreground">Открываем инвестиционные перспективы и возможности развития бизнеса</p>
-              </div>
+              <Link 
+                to="/services/investment-opportunities" 
+                className="block group"
+              >
+                <div className="p-6 bg-background rounded-lg border hover:shadow-md transition-all">
+                  <img
+                    src="https://images.unsplash.com/photo-1557496897-134c34df4f8c?auto=format&fit=crop&w=800&q=80"
+                    alt="Инвестиционные проекты"
+                    className="w-full h-48 object-cover rounded-lg mb-4 group-hover:opacity-90 transition-opacity"
+                    loading="eager"
+                    onError={(e) => {
+                      e.currentTarget.src = '/placeholder.svg';
+                    }}
+                  />
+                  <h3 className="font-playfair text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                    Инвестиционные возможности
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Открываем инвестиционные перспективы и возможности развития бизнеса
+                  </p>
+                </div>
+              </Link>
             </div>
           </div>
         </section>
