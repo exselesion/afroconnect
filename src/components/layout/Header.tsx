@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Menu, Globe, User, X, ChevronDown, Mail, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -16,6 +17,51 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useToast } from "@/components/ui/use-toast";
+
+const translations = {
+  ru: {
+    about: "О нас",
+    services: "Услуги",
+    events: "Мероприятия",
+    news: "Новости и события",
+    membership: "Членство",
+    committees: "Комитеты",
+    login: "Вход в личный кабинет",
+    register: "Регистрация",
+    email: "Email",
+    password: "Пароль",
+    confirmPassword: "Подтверждение пароля",
+    enterEmail: "введите email",
+    enterPassword: "введите пароль",
+    confirmPasswordPlaceholder: "подтвердите пароль",
+    loginButton: "Войти",
+    registerButton: "Зарегистрироваться",
+    noAccount: "Нет аккаунта? Зарегистрируйтесь",
+    hasAccount: "Уже есть аккаунт? Войдите",
+  },
+  en: {
+    about: "About",
+    services: "Services",
+    events: "Events",
+    news: "News & Events",
+    membership: "Membership",
+    committees: "Committees",
+    login: "Login",
+    register: "Register",
+    email: "Email",
+    password: "Password",
+    confirmPassword: "Confirm Password",
+    enterEmail: "enter email",
+    enterPassword: "enter password",
+    confirmPasswordPlaceholder: "confirm password",
+    loginButton: "Login",
+    registerButton: "Register",
+    noAccount: "No account? Register",
+    hasAccount: "Already have an account? Login",
+  },
+  // Добавьте другие языки по аналогии
+};
 
 const languages = [
   { code: "ru", name: "Русский" },
@@ -103,6 +149,17 @@ const menuStructure = {
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoginMode, setIsLoginMode] = useState(true);
+  const [currentLanguage, setCurrentLanguage] = useState<keyof typeof translations>("ru");
+  const { toast } = useToast();
+  const t = translations[currentLanguage];
+
+  const handleLanguageChange = (langCode: keyof typeof translations) => {
+    setCurrentLanguage(langCode);
+    toast({
+      title: "Язык изменен",
+      description: `Выбран язык: ${languages.find(l => l.code === langCode)?.name}`,
+    });
+  };
 
   const AuthDialog = () => (
     <Dialog>
@@ -114,14 +171,14 @@ export const Header = () => {
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>
-            {isLoginMode ? "Вход в личный кабинет" : "Регистрация"}
+            {isLoginMode ? t.login : t.register}
           </DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="space-y-4">
             <div className="grid w-full items-center gap-1.5">
               <label htmlFor="email" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                Email
+                {t.email}
               </label>
               <div className="relative">
                 <Mail className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
@@ -129,14 +186,14 @@ export const Header = () => {
                   id="email"
                   type="email"
                   className="flex h-10 w-full rounded-md border border-input bg-background px-3 pl-10 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                  placeholder="введите email"
+                  placeholder={t.enterEmail}
                 />
               </div>
             </div>
 
             <div className="grid w-full items-center gap-1.5">
               <label htmlFor="password" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                Пароль
+                {t.password}
               </label>
               <div className="relative">
                 <Lock className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
@@ -144,7 +201,7 @@ export const Header = () => {
                   id="password"
                   type="password"
                   className="flex h-10 w-full rounded-md border border-input bg-background px-3 pl-10 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                  placeholder="введите пароль"
+                  placeholder={t.enterPassword}
                 />
               </div>
             </div>
@@ -152,7 +209,7 @@ export const Header = () => {
             {!isLoginMode && (
               <div className="grid w-full items-center gap-1.5">
                 <label htmlFor="confirmPassword" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                  Подтверждение пароля
+                  {t.confirmPassword}
                 </label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
@@ -160,24 +217,25 @@ export const Header = () => {
                     id="confirmPassword"
                     type="password"
                     className="flex h-10 w-full rounded-md border border-input bg-background px-3 pl-10 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                    placeholder="подтвердите пароль"
+                    placeholder={t.confirmPasswordPlaceholder}
                   />
                 </div>
               </div>
             )}
 
             <Button className="w-full" type="submit">
-              {isLoginMode ? "Войти" : "Зарегистрироваться"}
+              {isLoginMode ? t.loginButton : t.registerButton}
             </Button>
 
             <div className="text-center text-sm">
               <button
-                onClick={() => setIsLoginMode(!isLoginMode)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsLoginMode(!isLoginMode);
+                }}
                 className="text-primary hover:underline"
               >
-                {isLoginMode
-                  ? "Нет аккаунта? Зарегистрируйтесь"
-                  : "Уже есть аккаунт? Войдите"}
+                {isLoginMode ? t.noAccount : t.hasAccount}
               </button>
             </div>
           </div>
@@ -258,7 +316,10 @@ export const Header = () => {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-40">
                 {languages.map((lang) => (
-                  <DropdownMenuItem key={lang.code}>
+                  <DropdownMenuItem 
+                    key={lang.code}
+                    onClick={() => handleLanguageChange(lang.code as keyof typeof translations)}
+                  >
                     {lang.name}
                   </DropdownMenuItem>
                 ))}
