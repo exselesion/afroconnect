@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, Globe, User, X, ChevronDown, Mail, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -250,6 +251,7 @@ export const Header = () => {
           </nav>
 
           <div className="flex items-center gap-4">
+            <ThemeToggle />
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon">
