@@ -1,10 +1,7 @@
-
 import { useState } from "react";
 import { Menu, Globe, User, X, ChevronDown, Mail, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { useAuth } from "@/contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -107,37 +104,9 @@ const menuStructure = {
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoginMode, setIsLoginMode] = useState(true);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  
-  const { login, isLoggedIn, user, logout } = useAuth();
-  const navigate = useNavigate();
-
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const success = await login(email, password);
-    if (success) {
-      setIsDialogOpen(false);
-      navigate("/dashboard");
-    }
-  };
-
-  const handleRegister = (e: React.FormEvent) => {
-    e.preventDefault();
-    // In a real app, this would call a registration API
-    // For now, just show a message
-    alert("Регистрация временно недоступна. Используйте тестовую учетную запись: admin/admin");
-  };
-
-  const handleLogout = () => {
-    logout();
-    navigate("/");
-  };
 
   const AuthDialog = () => (
-    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+    <Dialog>
       <DialogTrigger asChild>
         <Button variant="ghost" size="icon">
           <User className="h-5 w-5" />
@@ -151,64 +120,56 @@ export const Header = () => {
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="space-y-4">
-            <form onSubmit={isLoginMode ? handleLogin : handleRegister}>
-              <div className="grid w-full items-center gap-1.5">
-                <label htmlFor="email" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                  Email или логин
-                </label>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
-                  <input
-                    id="email"
-                    type="text"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 pl-10 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                    placeholder="введите email или логин"
-                  />
-                </div>
+            <div className="grid w-full items-center gap-1.5">
+              <label htmlFor="email" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                Email
+              </label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
+                <input
+                  id="email"
+                  type="email"
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 pl-10 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  placeholder="введите email"
+                />
               </div>
+            </div>
 
-              <div className="grid w-full items-center gap-1.5 mt-4">
-                <label htmlFor="password" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                  Пароль
+            <div className="grid w-full items-center gap-1.5">
+              <label htmlFor="password" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                Пароль
+              </label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
+                <input
+                  id="password"
+                  type="password"
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 pl-10 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  placeholder="введите пароль"
+                />
+              </div>
+            </div>
+
+            {!isLoginMode && (
+              <div className="grid w-full items-center gap-1.5">
+                <label htmlFor="confirmPassword" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                  Подтверждение пароля
                 </label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
                   <input
-                    id="password"
+                    id="confirmPassword"
                     type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
                     className="flex h-10 w-full rounded-md border border-input bg-background px-3 pl-10 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                    placeholder="введите пароль"
+                    placeholder="подтвердите пароль"
                   />
                 </div>
               </div>
+            )}
 
-              {!isLoginMode && (
-                <div className="grid w-full items-center gap-1.5 mt-4">
-                  <label htmlFor="confirmPassword" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-                    Подтверждение пароля
-                  </label>
-                  <div className="relative">
-                    <Lock className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
-                    <input
-                      id="confirmPassword"
-                      type="password"
-                      value={confirmPassword}
-                      onChange={(e) => setConfirmPassword(e.target.value)}
-                      className="flex h-10 w-full rounded-md border border-input bg-background px-3 pl-10 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                      placeholder="подтвердите пароль"
-                    />
-                  </div>
-                </div>
-              )}
-
-              <Button className="w-full mt-4" type="submit">
-                {isLoginMode ? "Войти" : "Зарегистрироваться"}
-              </Button>
-            </form>
+            <Button className="w-full" type="submit">
+              {isLoginMode ? "Войти" : "Зарегистрироваться"}
+            </Button>
 
             <div className="text-center text-sm">
               <button
@@ -305,32 +266,7 @@ export const Header = () => {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            
-            {isLoggedIn ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon">
-                    <User className="h-5 w-5" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56">
-                  <DropdownMenuGroup>
-                    <DropdownMenuItem onClick={() => navigate("/dashboard")}>
-                      Личный кабинет
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => navigate("/dashboard")}>
-                      Профиль
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={handleLogout}>
-                      Выйти
-                    </DropdownMenuItem>
-                  </DropdownMenuGroup>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ) : (
-              <AuthDialog />
-            )}
+            <AuthDialog />
           </div>
         </div>
       </div>
