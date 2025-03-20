@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Menu, Globe, User, X, ChevronDown, Mail, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -173,7 +174,12 @@ export const Header = () => {
 
             <div className="text-center text-sm">
               <button
-                onClick={() => setIsLoginMode(!isLoginMode)}
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  setIsLoginMode(!isLoginMode);
+                }}
                 className="text-primary hover:underline"
               >
                 {isLoginMode
