@@ -1,10 +1,14 @@
+
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Index = () => {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -28,13 +32,13 @@ const Index = () => {
           <div className="container-custom py-24 relative z-10">
             <div className="max-w-3xl mx-auto text-center animate-fadeIn">
               <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                Российско-Африканская Торгово-Промышленная Палата
+                {t("homeTitle")}
               </h1>
               <p className="text-lg text-muted-foreground mb-8">
-                Объединяем бизнес и культуры России и Африки
+                {t("homeSubtitle")}
               </p>
               <Button size="lg" className="rounded-full">
-                Стать участником <ArrowRight className="ml-2" size={18} />
+                {t("becomeMember")} <ArrowRight className="ml-2" size={18} />
               </Button>
             </div>
           </div>
@@ -59,10 +63,10 @@ const Index = () => {
                     }}
                   />
                   <h3 className="font-playfair text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                    Деловые связи
+                    {t("businessConnections")}
                   </h3>
                   <p className="text-muted-foreground">
-                    Налаживаем связи между ведущими компаниями и предпринимателями России и Африки
+                    {t("businessConnectionsDesc")}
                   </p>
                 </div>
               </Link>
@@ -82,10 +86,10 @@ const Index = () => {
                     }}
                   />
                   <h3 className="font-playfair text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                    Развитие торговли
+                    {t("tradeDevelopment")}
                   </h3>
                   <p className="text-muted-foreground">
-                    Содействуем международной торговле и экономическому сотрудничеству между регионами
+                    {t("tradeDevelopmentDesc")}
                   </p>
                 </div>
               </Link>
@@ -105,10 +109,10 @@ const Index = () => {
                     }}
                   />
                   <h3 className="font-playfair text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                    Инвестиционные возможности
+                    {t("investmentOpportunities")}
                   </h3>
                   <p className="text-muted-foreground">
-                    Открываем инвестиционные перспективы и возможности развития бизнеса
+                    {t("investmentOpportunitiesDesc")}
                   </p>
                 </div>
               </Link>
@@ -122,7 +126,7 @@ const Index = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* News Block */}
               <div className="space-y-6">
-                <h2 className="font-playfair text-2xl font-semibold">Latest News</h2>
+                <h2 className="font-playfair text-2xl font-semibold">{t("latestNews")}</h2>
                 <div className="space-y-4">
                   {[1, 2, 3].map((item) => (
                     <div
@@ -133,10 +137,10 @@ const Index = () => {
                         {new Date().toLocaleDateString()}
                       </p>
                       <h3 className="font-playfair text-lg font-semibold mb-2 group-hover:text-primary">
-                        Business Forum Announcement
+                        {t("businessForum")}
                       </h3>
                       <p className="text-muted-foreground">
-                        Joint business opportunities and economic cooperation between Russian and African companies...
+                        {t("businessForumDesc")}
                       </p>
                     </div>
                   ))}
@@ -145,7 +149,7 @@ const Index = () => {
 
               {/* Events Block */}
               <div className="space-y-6">
-                <h2 className="font-playfair text-2xl font-semibold">Upcoming Events</h2>
+                <h2 className="font-playfair text-2xl font-semibold">{t("upcomingEvents")}</h2>
                 <div className="space-y-4">
                   {[1, 2, 3].map((item) => (
                     <div
@@ -158,16 +162,16 @@ const Index = () => {
                         </div>
                         <div>
                           <h3 className="font-playfair text-lg font-semibold mb-2 group-hover:text-primary">
-                            Trade Mission to South Africa
+                            {t("tradeMission")}
                           </h3>
                           <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
                             <Calendar className="h-4 w-4" />
-                            <span>June 15, 2024</span>
+                            <span>{t("tradeMissionDate")}</span>
                             <MapPin className="h-4 w-4 ml-2" />
-                            <span>Johannesburg</span>
+                            <span>{t("tradeMissionLocation")}</span>
                           </div>
                           <p className="text-muted-foreground">
-                            Join our trade mission to explore business opportunities...
+                            {t("tradeMissionDesc")}
                           </p>
                         </div>
                       </div>
