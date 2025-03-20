@@ -7,17 +7,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
-const languages = [
-  { code: "ru", name: "Русский" },
-  { code: "ar", name: "العربية" },
-  { code: "fr", name: "Français" },
-  { code: "en", name: "English" },
-  { code: "pt", name: "Português" },
-  { code: "sw", name: "Kiswahili" },
-];
+import { languages } from "@/constants/menuItems";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const LanguageSelector = () => {
+  const { language, setLanguage } = useLanguage();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -27,7 +22,11 @@ export const LanguageSelector = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-40">
         {languages.map((lang) => (
-          <DropdownMenuItem key={lang.code}>
+          <DropdownMenuItem 
+            key={lang.code}
+            className={lang.code === language ? "bg-accent font-medium" : ""}
+            onClick={() => setLanguage(lang.code)}
+          >
             {lang.name}
           </DropdownMenuItem>
         ))}
