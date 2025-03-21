@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Menu, X, User } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { LanguageSelector } from "./LanguageSelector";
@@ -44,12 +44,7 @@ export const Header = () => {
           <div className="flex items-center gap-4">
             <ThemeToggle />
             <LanguageSelector />
-            <Link to="/account">
-              <Button variant="ghost" size="icon">
-                <User size={20} />
-                <span className="sr-only">Account</span>
-              </Button>
-            </Link>
+            {/* Account link button removed */}
             <AuthDialog />
           </div>
         </div>
