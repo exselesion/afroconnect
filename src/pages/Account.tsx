@@ -111,7 +111,7 @@ const Account = () => {
             <div className="md:col-span-2">
               <Tabs defaultValue="services" className="w-full">
                 <TabsList className="w-full grid grid-cols-2 md:grid-cols-4 mb-4">
-                  <TabsTrigger value="services">{t("services")}</TabsTrigger>
+                  <TabsTrigger value="services">{t("servicesSection")}</TabsTrigger>
                   <TabsTrigger value="partners">{t("partnerSearch")}</TabsTrigger>
                   <TabsTrigger value="payments">{t("payments")}</TabsTrigger>
                   <TabsTrigger value="analytics">{t("analytics")}</TabsTrigger>
