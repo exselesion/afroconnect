@@ -10,3 +10,15 @@ export interface Translations {
 export interface TranslationsMap {
   [languageCode: string]: Translations;
 }
+
+// Account page related types
+export interface UserProfile {
+  companyName: string;
+  fullName: string;
+  membershipLevel: string;
+  personalManager: {
+    name: string;
+    phone: string;
+    email: string;
+  };
+}

@@ -1,12 +1,13 @@
 
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { LanguageSelector } from "./LanguageSelector";
 import { AuthDialog } from "./AuthDialog";
 import { DesktopMenuItem, MobileMenuItem } from "./NavigationMenu";
 import { menuStructure } from "@/constants/menuItems";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,9 +25,9 @@ export const Header = () => {
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </Button>
-            <a href="/" className="flex items-center gap-2">
+            <Link to="/" className="flex items-center gap-2">
               <span className="font-playfair text-xl font-semibold">CCAFRU</span>
-            </a>
+            </Link>
           </div>
 
           <nav className="hidden lg:flex items-center gap-2">
@@ -43,6 +44,12 @@ export const Header = () => {
           <div className="flex items-center gap-4">
             <ThemeToggle />
             <LanguageSelector />
+            <Link to="/account">
+              <Button variant="ghost" size="icon">
+                <User size={20} />
+                <span className="sr-only">Account</span>
+              </Button>
+            </Link>
             <AuthDialog />
           </div>
         </div>
