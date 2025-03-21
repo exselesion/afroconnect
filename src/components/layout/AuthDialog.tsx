@@ -8,68 +8,15 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-  DialogDescription,
 } from "@/components/ui/dialog";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { toast } from "sonner";
-
-interface UserData {
-  email: string;
-  password: string;
-}
 
 export const AuthDialog = () => {
   const [isLoginMode, setIsLoginMode] = useState(true);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
   const { t } = useLanguage();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (isLoginMode) {
-      // Handle login
-      const users = JSON.parse(localStorage.getItem("users") || "[]") as UserData[];
-      const user = users.find(u => u.email === email && u.password === password);
-      
-      if (user) {
-        localStorage.setItem("currentUser", JSON.stringify(user));
-        toast.success(t("loginSuccess"));
-        setIsOpen(false);
-      } else {
-        toast.error(t("loginFailed"));
-      }
-    } else {
-      // Handle registration
-      if (password !== confirmPassword) {
-        toast.error(t("passwordsDoNotMatch"));
-        return;
-      }
-      
-      const users = JSON.parse(localStorage.getItem("users") || "[]") as UserData[];
-      
-      // Check if user already exists
-      if (users.some(user => user.email === email)) {
-        toast.error(t("emailAlreadyExists"));
-        return;
-      }
-      
-      // Add new user
-      const newUser = { email, password };
-      users.push(newUser);
-      localStorage.setItem("users", JSON.stringify(users));
-      
-      // Auto login after registration
-      localStorage.setItem("currentUser", JSON.stringify(newUser));
-      toast.success(t("registrationSuccess"));
-      setIsOpen(false);
-    }
-  };
-
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog>
       <DialogTrigger asChild>
         <Button variant="ghost" size="icon">
           <User className="h-5 w-5" />
@@ -80,11 +27,8 @@ export const AuthDialog = () => {
           <DialogTitle>
             {isLoginMode ? t("login") : t("register")}
           </DialogTitle>
-          <DialogDescription>
-            {isLoginMode ? t("loginDescription") : t("registerDescription")}
-          </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleSubmit} className="grid gap-4 py-4">
+        <div className="grid gap-4 py-4">
           <div className="space-y-4">
             <div className="grid w-full items-center gap-1.5">
               <label htmlFor="email" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
@@ -97,9 +41,6 @@ export const AuthDialog = () => {
                   type="email"
                   className="flex h-10 w-full rounded-md border border-input bg-background px-3 pl-10 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                   placeholder={t("enterEmail")}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
                 />
               </div>
             </div>
@@ -115,9 +56,6 @@ export const AuthDialog = () => {
                   type="password"
                   className="flex h-10 w-full rounded-md border border-input bg-background px-3 pl-10 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                   placeholder={t("enterPassword")}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
                 />
               </div>
             </div>
@@ -134,9 +72,6 @@ export const AuthDialog = () => {
                     type="password"
                     className="flex h-10 w-full rounded-md border border-input bg-background px-3 pl-10 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     placeholder={t("confirmPasswordPlaceholder")}
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    required={!isLoginMode}
                   />
                 </div>
               </div>
@@ -162,7 +97,7 @@ export const AuthDialog = () => {
               </button>
             </div>
           </div>
-        </form>
+        </div>
       </DialogContent>
     </Dialog>
   );

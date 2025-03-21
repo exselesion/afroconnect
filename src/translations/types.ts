@@ -10,8 +10,3 @@ export interface Translations {
 export interface TranslationsMap {
   [languageCode: string]: Translations;
 }
-
-export interface UserData {
-  email: string;
-  password: string;
-}
