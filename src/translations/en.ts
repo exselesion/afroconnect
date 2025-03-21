@@ -60,7 +60,7 @@ export const en = {
   "managerName": "Manager Name",
   "phone": "Phone",
   "contactManager": "Contact Manager",
-  "services": "Services",
+  "servicesSection": "Services", // Renamed to avoid duplicate with the header "services"
   "partnerSearch": "Partner Search",
   "payments": "Payments",
   "analytics": "Analytics",
