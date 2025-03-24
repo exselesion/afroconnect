@@ -1,5 +1,6 @@
+import { TranslationsMap } from "./types";
 
-export const ar = {
+export const ar: TranslationsMap = {
   // Header
   "about": "من نحن",
   "services": "الخدمات",

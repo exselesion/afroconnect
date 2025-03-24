@@ -1,6 +1,6 @@
-import { TranslationMap } from "./types";
+import { TranslationsMap } from "./types";
 
-export const ru: TranslationMap = {
+export const ru: TranslationsMap = {
   // Header
   "about": "О нас",
   "services": "Услуги",
@@ -117,7 +117,7 @@ export const ru: TranslationMap = {
   updateEvent: "Обновить событие",
   eventUpdated: "Событие успешно обновлено",
   eventAdded: "Событие успе��но добавлено",
-  eventDeleted: "Событие успешно удалено",
+  eventDeleted: "Событие ус��ешно удалено",
   editSection: "Редактировать секцию",
   sectionTitle: "Заголовок секции",
   sectionDescription: "Описание секции",
