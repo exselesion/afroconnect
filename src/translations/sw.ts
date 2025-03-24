@@ -1,6 +1,5 @@
-import { TranslationsMap } from "./types";
 
-export const sw: TranslationsMap = {
+export const sw = {
   // Header
   "about": "Kuhusu Sisi",
   "services": "Huduma",
