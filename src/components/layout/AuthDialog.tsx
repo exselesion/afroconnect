@@ -10,10 +10,66 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { supabase } from "@/lib/supabase";
+import { toast } from "sonner";
+import { Input } from "@/components/ui/input";
 
 export const AuthDialog = () => {
   const [isLoginMode, setIsLoginMode] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const { t } = useLanguage();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email || !password) {
+      toast.error(t("fillAllFields"));
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      if (isLoginMode) {
+        // Логин пользователя
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+
+        if (error) throw error;
+        
+        toast.success(t("loginSuccess"));
+        window.location.href = "/account";
+      } else {
+        // Проверка соответствия паролей
+        if (password !== confirmPassword) {
+          toast.error(t("passwordsDoNotMatch"));
+          setLoading(false);
+          return;
+        }
+        
+        // Регистрация пользователя
+        const { data, error } = await supabase.auth.signUp({
+          email,
+          password,
+        });
+
+        if (error) throw error;
+        
+        toast.success(t("registrationSuccess"));
+        setIsLoginMode(true);
+      }
+    } catch (error) {
+      console.error("Authentication error:", error);
+      toast.error(isLoginMode ? t("loginError") : t("registrationError"));
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Dialog>
@@ -28,7 +84,7 @@ export const AuthDialog = () => {
             {isLoginMode ? t("login") : t("register")}
           </DialogTitle>
         </DialogHeader>
-        <div className="grid gap-4 py-4">
+        <form onSubmit={handleSubmit} className="grid gap-4 py-4">
           <div className="space-y-4">
             <div className="grid w-full items-center gap-1.5">
               <label htmlFor="email" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
@@ -36,11 +92,14 @@ export const AuthDialog = () => {
               </label>
               <div className="relative">
                 <Mail className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
-                <input
+                <Input
                   id="email"
                   type="email"
-                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 pl-10 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="pl-10"
                   placeholder={t("enterEmail")}
+                  disabled={loading}
                 />
               </div>
             </div>
@@ -51,11 +110,14 @@ export const AuthDialog = () => {
               </label>
               <div className="relative">
                 <Lock className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
-                <input
+                <Input
                   id="password"
                   type="password"
-                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 pl-10 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="pl-10"
                   placeholder={t("enterPassword")}
+                  disabled={loading}
                 />
               </div>
             </div>
@@ -67,18 +129,21 @@ export const AuthDialog = () => {
                 </label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
-                  <input
+                  <Input
                     id="confirmPassword"
                     type="password"
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 pl-10 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className="pl-10"
                     placeholder={t("confirmPasswordPlaceholder")}
+                    disabled={loading}
                   />
                 </div>
               </div>
             )}
 
-            <Button className="w-full" type="submit">
-              {isLoginMode ? t("loginButton") : t("registerButton")}
+            <Button className="w-full" type="submit" disabled={loading}>
+              {loading ? t("loading") : (isLoginMode ? t("loginButton") : t("registerButton"))}
             </Button>
 
             <div className="text-center text-sm">
@@ -90,6 +155,7 @@ export const AuthDialog = () => {
                   setIsLoginMode(!isLoginMode);
                 }}
                 className="text-primary hover:underline"
+                disabled={loading}
               >
                 {isLoginMode
                   ? t("noAccount")
@@ -97,7 +163,7 @@ export const AuthDialog = () => {
               </button>
             </div>
           </div>
-        </div>
+        </form>
       </DialogContent>
     </Dialog>
   );

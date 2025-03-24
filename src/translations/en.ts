@@ -20,6 +20,13 @@ export const en = {
   "registerButton": "Register",
   "noAccount": "No account? Register",
   "haveAccount": "Already have an account? Login",
+  "loading": "Loading...",
+  "fillAllFields": "Please fill all required fields",
+  "passwordsDoNotMatch": "Passwords do not match",
+  "loginSuccess": "Login successful",
+  "loginError": "Login failed. Please check your credentials and try again",
+  "registrationSuccess": "Registration successful! Please check your email to verify your account",
+  "registrationError": "Registration failed. Please try again later",
   // Footer
   "contactUs": "Contact Us",
   "followUs": "Follow Us",
