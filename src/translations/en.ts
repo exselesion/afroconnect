@@ -20,6 +20,8 @@ export const en = {
   "registerButton": "Register",
   "noAccount": "No account? Register",
   "haveAccount": "Already have an account? Login",
+  "logout": "Logout",
+  "account": "My Account",
   // Footer
   "contactUs": "Contact Us",
   "followUs": "Follow Us",
