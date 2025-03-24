@@ -26,7 +26,7 @@ export const Header = () => {
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </Button>
             <Link to="/" className="flex items-center gap-2">
-              <span className="font-playfair text-xl font-semibold">CCAFRU</span>
+              <span className="font-playfair text-xl font-semibold">AfRo Connect</span>
             </Link>
           </div>
 
